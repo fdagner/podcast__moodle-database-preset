@@ -4,6 +4,7 @@
   <ol id="playlist"></ul>
 </div>
 
+
 <script>
 window.onload = function() {
   // Hole die Audiofile-Elemente
@@ -32,6 +33,32 @@ window.onload = function() {
   // Hole alle Listenelemente aus der Playlist
   const playlistItems = document.querySelectorAll('#playlist li');
 
+  // Setze den Index des aktuellen Songs auf 0
+  let currentSongIndex = 0;
+
+  // Setze einen Event-Listener, der ausgeführt wird, wenn das Audio-Element das Ende des aktuellen Songs erreicht hat
+  audio.addEventListener('ended', () => {
+    // Inkrementiere den Index des aktuellen Songs
+    currentSongIndex++;
+
+    // Wenn der Index des aktuellen Songs größer oder gleich der Anzahl der Listenelemente in der Playlist ist, setze den Index auf 0
+    if (currentSongIndex >= playlistItems.length) {
+      currentSongIndex = 0;
+    }
+
+    // Setze das Audio-Element auf die Quelle des nächsten Songs und spiele ihn ab
+    const nextSong = playlistItems[currentSongIndex];
+    audio.src = nextSong.getAttribute('data-src');
+    audio.play();
+
+    // Aktiviere das ausgewählte Listenelement
+    const activeItem = document.getElementById('active');
+    if (activeItem) {
+      activeItem.removeAttribute('id');
+    }
+    nextSong.setAttribute('id', 'active');
+  });
+
   // Iteriere durch jedes Listenelement
   playlistItems.forEach((item, index) => {
     // Füge einen Event-Listener hinzu, der das Audio-Element auf die entsprechende Quelle setzt
@@ -39,13 +66,16 @@ window.onload = function() {
       audio.src = item.getAttribute('data-src');
       audio.play();
 
+      // Setze den Index des aktuellen Songs auf den Index des angeklickten Listenelements
+      currentSongIndex = index;
+
       // Aktiviere das ausgewählte Listenelement
-const activeItem = document.getElementById('active');
-    if (activeItem) {
-      activeItem.removeAttribute('id');
-    }
-    item.setAttribute('id', 'active');
-  });
+      const activeItem = document.getElementById('active');
+      if (activeItem) {
+        activeItem.removeAttribute('id');
+      }
+      item.setAttribute('id', 'active');
+    });
   });
 };
 </script>
