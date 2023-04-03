@@ -1,6 +1,6 @@
 # Podcast
 
-Podvast is a preset for the Moodle activity database.
+Podcast is a preset for the Moodle activity database.
 
 ## Description
 
