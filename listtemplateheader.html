@@ -1,0 +1,19 @@
+<script>
+    // Run once per session.
+    if ((typeof sessionStorage !== 'undefined') &&
+        (sessionStorage.getItem('ChangeEntriesReload') === null)) {
+
+        // Set url for 1000 entries per site.
+        const params = new URLSearchParams(location.search);
+        params.set('perpage', 1000);
+        window.history.replaceState({}, '', `${location.pathname}?${params}`);
+        // Reload page.
+        window.location.reload();
+
+        console.log('ok');
+
+        sessionStorage.setItem('ChangeEntriesReload', true);
+    }
+</script>
+<details><summary class="btn alert-primary">Playlist bearbeiten</summary>
+<div class="elements">

@@ -1,0 +1,52 @@
+</div></details><br>
+<div id="audioplayer"><h2 style="color: #fff">🎙️Unsere Podcasts🎙️</h2>
+  <audio id="audio-player" controls></audio>
+  <ol id="playlist"></ul>
+</div>
+
+<script>
+window.onload = function() {
+  // Hole die Audiofile-Elemente
+  const audiofileElements = document.querySelectorAll('.simp-source');
+
+  // Hole die Liste, in die die Audiofile-Elemente eingefügt werden sollen
+  const list = document.getElementById('playlist');
+
+  // Iteriere durch jedes Audiofile-Element
+  audiofileElements.forEach(audiofileElement => {
+    // Extrahiere den Link und den Namen aus dem Audiofile-Element
+    const audioLink = audiofileElement.querySelector('a').getAttribute('href');
+    const audioName = audiofileElement.querySelector('.name').textContent.trim();
+    const audioUser = audiofileElement.querySelector('.user').textContent.trim();
+
+    // Erstelle ein neues Listenelement mit dem Audio-Namen und -Link
+    const listItem = document.createElement('li');
+    listItem.setAttribute('data-src', audioLink);
+    listItem.innerHTML = `<strong>${audioName}</strong> - <span>${audioUser}</span>`;
+    list.appendChild(listItem);
+  });
+
+  // Hole das Audio-Element
+  const audio = document.getElementById('audio-player');
+
+  // Hole alle Listenelemente aus der Playlist
+  const playlistItems = document.querySelectorAll('#playlist li');
+
+  // Iteriere durch jedes Listenelement
+  playlistItems.forEach((item, index) => {
+    // Füge einen Event-Listener hinzu, der das Audio-Element auf die entsprechende Quelle setzt
+    item.addEventListener('click', () => {
+      audio.src = item.getAttribute('data-src');
+      audio.play();
+
+      // Aktiviere das ausgewählte Listenelement
+const activeItem = document.getElementById('active');
+    if (activeItem) {
+      activeItem.removeAttribute('id');
+    }
+    item.setAttribute('id', 'active');
+  });
+  });
+};
+</script>
+<br><br>
