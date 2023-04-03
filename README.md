@@ -8,7 +8,7 @@ Users can upload audio files that can then be played in a playlist with the audi
 
 ## Getting started
 
-Download release file. Create a "Database" activity in Moodle and then upload the ZIP file in the "Presets" tab under "Import".
+Download the [release file](https://github.com/fdagner/podcast__moodle-database-preset/releases). Create a "Database" activity in Moodle and then upload the ZIP file in the "Presets" tab under "Import".
 
 ## Language Support
 
