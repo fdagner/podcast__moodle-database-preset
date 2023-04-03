@@ -1,6 +1,6 @@
-# Podcast
+# Podcast-Video
 
-Podcast is a preset for the Moodle activity database.
+Podcast-Video is a preset for the Moodle activity database.
 
 ## Description
 
